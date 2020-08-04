@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -48,9 +47,11 @@ public class InputDialogMasked extends JDialog {
         });
 
         // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(e -> onCancel(),
+        contentPane.registerKeyboardAction(
+                e -> onCancel(),
                 KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT
+        );
     }
 
     public static String showInputDialog(String title, String message, String mask) {
@@ -69,24 +70,11 @@ public class InputDialogMasked extends JDialog {
             inputTextField = new JFormattedTextField();
         }
 
-        inputTextField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                //ignored
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    onOK();
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                //ignored
-            }
-        });
+        inputTextField.registerKeyboardAction(
+                e -> onOK(),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0),
+                JComponent.WHEN_FOCUSED
+        );
 
         inputPane.add(inputTextField);
     }
