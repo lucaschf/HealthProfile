@@ -88,6 +88,7 @@ public class HealthRecords {
         return String.format("%s: %s\n", NAME, healthProfile.getName()) +
                 String.format("%s: %s\n", AGE, healthProfile.getAge()) +
                 String.format("%s: %s\n", BIRTH_DATE, healthProfile.getBirthDate()) +
+                String.format("%s: %s\n", GENDER, healthProfile.getGender()) +
                 String.format("%s: %d %s\n", MAXIMUM_FREQUENCY, healthProfile.getMaximumHeartRate(), BPM) +
                 String.format("%s: %1.2f %s\n", MAX_TARGET_RATE, healthProfile.getMaxTargetRate(), BPM) +
                 String.format("%s: %1.2f %s\n", MIN_TARGET_RATE, healthProfile.getMinTargetRate(), BPM) +
